@@ -1,0 +1,161 @@
+C:\Users\HP>mongosh
+Current Mongosh Log ID: 66cff602d1ed148aa246b798
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.2.5
+Using MongoDB:          7.0.14
+Using Mongosh:          2.2.5
+mongosh 2.3.0 is available for download: https://www.mongodb.com/try/download/shell
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2024-08-28T10:05:41.171+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+test> use chitkara
+switched to db chitkara
+chitkara> show collections
+faculty
+students
+user
+chitkara> db.user.insertOne({date:ISODate()})
+{
+  acknowledged: true,
+  insertedId: ObjectId('66cff847d1ed148aa246b799')
+}
+chitkara> db.user.find()
+[
+  {
+    _id: ObjectId('66cebaf8b60c02c7f046b799'),
+    name: 'Ishpreet',
+    age: 20,
+    class: 'g9'
+  },
+  {
+    _id: ObjectId('66cebd8eb60c02c7f046b79a'),
+    name: 'Alex',
+    age: 24,
+    marks: 50,
+    subject: 'Maths'
+  },
+  {
+    _id: ObjectId('66cebd8eb60c02c7f046b79b'),
+    name: 'Josh',
+    age: 25,
+    marks: 70,
+    subject: 'Science'
+  },
+  {
+    _id: ObjectId('66cebd8eb60c02c7f046b79c'),
+    name: 'Christian',
+    age: 28,
+    marks: 60,
+    subject: 'Economics'
+  },
+  {
+    _id: ObjectId('66cebd8eb60c02c7f046b79d'),
+    name: 'Rhys',
+    age: 27,
+    marks: 55
+  },
+  {
+    _id: ObjectId('66cebd8eb60c02c7f046b79e'),
+    name: 'Jameson',
+    age: 20,
+    marks: 67,
+    subject: 'History'
+  },
+  {
+    _id: ObjectId('66cff847d1ed148aa246b799'),
+    date: ISODate('2024-08-29T04:25:43.102Z')
+  }
+]
+chitkara> db.user.find().pretty()
+[
+  {
+    _id: ObjectId('66cebaf8b60c02c7f046b799'),
+    name: 'Ishpreet',
+    age: 20,
+    class: 'g9'
+  },
+  {
+    _id: ObjectId('66cebd8eb60c02c7f046b79a'),
+    name: 'Alex',
+    age: 24,
+    marks: 50,
+    subject: 'Maths'
+  },
+  {
+    _id: ObjectId('66cebd8eb60c02c7f046b79b'),
+    name: 'Josh',
+    age: 25,
+    marks: 70,
+    subject: 'Science'
+  },
+  {
+    _id: ObjectId('66cebd8eb60c02c7f046b79c'),
+    name: 'Christian',
+    age: 28,
+    marks: 60,
+    subject: 'Economics'
+  },
+  {
+    _id: ObjectId('66cebd8eb60c02c7f046b79d'),
+    name: 'Rhys',
+    age: 27,
+    marks: 55
+  },
+  {
+    _id: ObjectId('66cebd8eb60c02c7f046b79e'),
+    name: 'Jameson',
+    age: 20,
+    marks: 67,
+    subject: 'History'
+  },
+  {
+    _id: ObjectId('66cff847d1ed148aa246b799'),
+    date: ISODate('2024-08-29T04:25:43.102Z')
+  }
+]
+chitkara> db.user.findOne()
+{
+  _id: ObjectId('66cebaf8b60c02c7f046b799'),
+  name: 'Ishpreet',
+  age: 20,
+  class: 'g9'
+}
+chitkara> db.user.findOne({"66cebd8eb60c02c7f046b79d"})
+Uncaught:
+SyntaxError: Unexpected token (1:43)
+
+> 1 | db.user.findOne({"66cebd8eb60c02c7f046b79d"})
+    |                                            ^
+  2 |
+
+chitkara> db.user.findOne({id:"66cebd8eb60c02c7f046b79d"})
+null
+chitkara> db.user.findOne({id:"2"})
+null
+chitkara> db.user.findOne({name:"Josh"})
+{
+  _id: ObjectId('66cebd8eb60c02c7f046b79b'),
+  name: 'Josh',
+  age: 25,
+  marks: 70,
+  subject: 'Science'
+}
+chitkara> db.user.findOne(ObjectId('66cebd8eb60c02c7f046b79c'))
+{
+  _id: ObjectId('66cebd8eb60c02c7f046b79c'),
+  name: 'Christian',
+  age: 28,
+  marks: 60,
+  subject: 'Economics'
+}
+chitkara> db.user.findOne({name:"Jameson"})
+{
+  _id: ObjectId('66cebd8eb60c02c7f046b79d'),
+  name: 'Jameson',
+  age: 27,
+  marks: 55
+}
