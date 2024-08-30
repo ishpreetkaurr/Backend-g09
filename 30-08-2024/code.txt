@@ -1,46 +1,14 @@
-mongosh
-Current Mongosh Log ID: 66d14267fc0625063446b798
-Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.2.5
-Using MongoDB:          7.0.14
-Using Mongosh:          2.2.5
-mongosh 2.3.0 is available for download: https://www.mongodb.com/try/download/shell
+1. To find the number of documents in database
 
-For mongosh info see: https://docs.mongodb.com/mongodb-shell/
-
-------
-   The server generated these startup warnings when booting
-   2024-08-28T10:05:41.171+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
-------
-
-test> use chitkara
-switched to db chitkara
 chitkara> db.user.countDocuments()
 7
-chitkara> db.user.estimatedDocuments()
-TypeError: db.user.estimatedDocuments is not a function
-chitkara> db.user.estimatedDocument()
-TypeError: db.user.estimatedDocument is not a function
+
 chitkara> db.user.estimatedDocumentCount()
 7
-chitkara> db.students.updateMany({$set: {subject: "DataScience"}
-... db.students.updateMany({$set: {subject: "DataScience"})
-Uncaught:
-SyntaxError: Unexpected token, expected "," (2:0)
 
-  1 | db.students.updateMany({$set: {subject: "DataScience"}
-> 2 | db.students.updateMany({$set: {subject: "DataScience"})
-    | ^
-  3 |
+2. Change the subject of all students to DataScience
 
-chitkara> db.students.updateMany({$set: {subject: "DataScience"})
-Uncaught:
-SyntaxError: Unexpected token, expected "," (1:54)
-
-> 1 | db.students.updateMany({$set: {subject: "DataScience"})
-    |                                                       ^
-  2 |
-
-chitkara> db.students.updateMany({}, { $set: { subject: "DataScience" } })
+ db.students.updateMany({}, { $set: { subject: "DataScience" } })
 {
   acknowledged: true,
   insertedId: null,
@@ -48,9 +16,10 @@ chitkara> db.students.updateMany({}, { $set: { subject: "DataScience" } })
   modifiedCount: 5,
   upsertedCount: 0
 }
-chitkara>
 
-chitkara> db.students.updateMany({}, { $set: { address: "Chitkara University" } })
+3. Add new field address to the database students
+
+ db.students.updateMany({}, { $set: { address: "Chitkara University" } })
 {
   acknowledged: true,
   insertedId: null,
@@ -58,7 +27,10 @@ chitkara> db.students.updateMany({}, { $set: { address: "Chitkara University" } 
   modifiedCount: 5,
   upsertedCount: 0
 }
-chitkara> db.students.updateMany({name:"Aaron"}, { $set: { grade: "A" } })
+
+4. Add grades to all the documents in database
+
+db.students.updateMany({name:"Aaron"}, { $set: { grade: "A" } })
 {
   acknowledged: true,
   insertedId: null,
@@ -66,7 +38,8 @@ chitkara> db.students.updateMany({name:"Aaron"}, { $set: { grade: "A" } })
   modifiedCount: 1,
   upsertedCount: 0
 }
-chitkara> db.students.updateMany({name:"Ava"}, { $set: { grade: "B+" } })
+
+db.students.updateMany({name:"Ava"}, { $set: { grade: "B+" } })
 {
   acknowledged: true,
   insertedId: null,
@@ -74,7 +47,8 @@ chitkara> db.students.updateMany({name:"Ava"}, { $set: { grade: "B+" } })
   modifiedCount: 1,
   upsertedCount: 0
 }
-chitkara> db.students.updateMany({name:"Pip"}, { $set: { grade: "A+" } })
+
+db.students.updateMany({name:"Pip"}, { $set: { grade: "A+" } })
 {
   acknowledged: true,
   insertedId: null,
@@ -82,7 +56,8 @@ chitkara> db.students.updateMany({name:"Pip"}, { $set: { grade: "A+" } })
   modifiedCount: 1,
   upsertedCount: 0
 }
-chitkara> db.students.updateMany({name:"Cami"}, { $set: { grade: "B" } })
+
+db.students.updateMany({name:"Cami"}, { $set: { grade: "B" } })
 {
   acknowledged: true,
   insertedId: null,
@@ -90,7 +65,8 @@ chitkara> db.students.updateMany({name:"Cami"}, { $set: { grade: "B" } })
   modifiedCount: 1,
   upsertedCount: 0
 }
-chitkara> db.students.updateOne({name:"Jack"}, { $set: { grade: "B" } })
+
+db.students.updateOne({name:"Jack"}, { $set: { grade: "B" } })
 {
   acknowledged: true,
   insertedId: null,
@@ -98,3 +74,187 @@ chitkara> db.students.updateOne({name:"Jack"}, { $set: { grade: "B" } })
   modifiedCount: 1,
   upsertedCount: 0
 }
+
+5. Using Logical Operators 
+
+-> Find students with age = 22 and marks = 90.
+db.students.findOne({
+...   $and: [
+...     { age: { $eq: 22 } },
+...     { marks: { $eq: 90 } }
+...   ]
+... })
+{
+  _id: ObjectId('66cec039b60c02c7f046b7a5'),
+  name: 'Ava',
+  age: 22,
+  class: 5,
+  subject: 'DataScience',
+  address: 'Chitkara University',
+  grade: 'B+',
+  marks: 90
+}
+
+db.students.findOne({age: {$eq:22},marks:{$eq:90}})
+{
+  _id: ObjectId('66cec039b60c02c7f046b7a5'),
+  name: 'Ava',
+  age: 22,
+  class: 5,
+  subject: 'DataScience',
+  address: 'Chitkara University',
+  grade: 'B+',
+  marks: 90
+}
+
+->Find students with marks > 80 and age > 18.
+db.students.find({marks:{$gt:80},age:{$gt:18}})
+[
+  {
+    _id: ObjectId('66cec039b60c02c7f046b7a4'),
+    name: 'Aaron',
+    age: 21,
+    class: 3,
+    subject: 'DataScience',
+    address: 'Chitkara University',
+    grade: 'A',
+    marks: 85
+  },
+  {
+    _id: ObjectId('66cec039b60c02c7f046b7a5'),
+    name: 'Ava',
+    age: 22,
+    class: 5,
+    subject: 'DataScience',
+    address: 'Chitkara University',
+    grade: 'B+',
+    marks: 90
+  }
+]
+
+-> find students with A+ grade
+db.students.find({grade:{$eq:"A+"}})
+[
+  {
+    _id: ObjectId('66cec039b60c02c7f046b7a6'),
+    name: 'Pip',
+    age: 20,
+    class: 10,
+    subject: 'DataScience',
+    address: 'Chitkara University',
+    grade: 'A+',
+    marks: 74
+  }
+]
+
+-> find students with age > 20 or marks > 70.
+db.students.find({
+...   $or: [
+...     { age: { $gt: 20 } },
+...     { marks: { $gt: 70 } }
+...   ]
+... })
+[
+  {
+    _id: ObjectId('66cec039b60c02c7f046b7a4'),
+    name: 'Aaron',
+    age: 21,
+    class: 3,
+    subject: 'DataScience',
+    address: 'Chitkara University',
+    grade: 'A',
+    marks: 85
+  },
+  {
+    _id: ObjectId('66cec039b60c02c7f046b7a5'),
+    name: 'Ava',
+    age: 22,
+    class: 5,
+    subject: 'DataScience',
+    address: 'Chitkara University',
+    grade: 'B+',
+    marks: 90
+  },
+  {
+    _id: ObjectId('66cec039b60c02c7f046b7a6'),
+    name: 'Pip',
+    age: 20,
+    class: 10,
+    subject: 'DataScience',
+    address: 'Chitkara University',
+    grade: 'A+',
+    marks: 74
+  },
+  {
+    _id: ObjectId('66cec039b60c02c7f046b7a8'),
+    name: 'Jack',
+    age: 19,
+    subject: 'DataScience',
+    address: 'Chitkara University',
+    class: '6',
+    grade: 'B',
+    marks: 78
+  }
+]
+
+->find students where age != 19
+db.students.find({ age: { $not: { $eq: 19 } } })
+[
+  {
+    _id: ObjectId('66cec039b60c02c7f046b7a4'),
+    name: 'Aaron',
+    age: 21,
+    class: 3,
+    subject: 'DataScience',
+    address: 'Chitkara University',
+    grade: 'A',
+    marks: 85
+  },
+  {
+    _id: ObjectId('66cec039b60c02c7f046b7a5'),
+    name: 'Ava',
+    age: 22,
+    class: 5,
+    subject: 'DataScience',
+    address: 'Chitkara University',
+    grade: 'B+',
+    marks: 90
+  },
+  {
+    _id: ObjectId('66cec039b60c02c7f046b7a6'),
+    name: 'Pip',
+    age: 20,
+    class: 10,
+    subject: 'DataScience',
+    address: 'Chitkara University',
+    grade: 'A+',
+    marks: 74
+  }
+]
+
+->find students where age != 19 or marks != 90
+ db.students.find({ $nor: [ { age: { $eq: 19 } }, { marks: { $eq: 90 } } ] })
+[
+  {
+    _id: ObjectId('66cec039b60c02c7f046b7a4'),
+    name: 'Aaron',
+    age: 21,
+    class: 3,
+    subject: 'DataScience',
+    address: 'Chitkara University',
+    grade: 'A',
+    marks: 85
+  },
+  {
+    _id: ObjectId('66cec039b60c02c7f046b7a6'),
+    name: 'Pip',
+    age: 20,
+    class: 10,
+    subject: 'DataScience',
+    address: 'Chitkara University',
+    grade: 'A+',
+    marks: 74
+  }
+]
+
+
