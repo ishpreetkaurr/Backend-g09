@@ -257,4 +257,39 @@ db.students.find({ age: { $not: { $eq: 19 } } })
   }
 ]
 
+-> using $exist operator
+db.students.find({marks:{$exists:true,$nin:[90,85]}})
+[
+  {
+    _id: ObjectId('66cec039b60c02c7f046b7a6'),
+    name: 'Pip',
+    age: 20,
+    class: 10,
+    subject: 'DataScience',
+    address: 'Chitkara University',
+    grade: 'A+',
+    marks: 74
+  },
+  {
+    _id: ObjectId('66cec039b60c02c7f046b7a7'),
+    name: 'Cami',
+    age: 19,
+    class: 8,
+    subject: 'DataScience',
+    address: 'Chitkara University',
+    grade: 'B',
+    marks: 59
+  },
+  {
+    _id: ObjectId('66cec039b60c02c7f046b7a8'),
+    name: 'Jack',
+    age: 19,
+    subject: 'DataScience',
+    address: 'Chitkara University',
+    class: '6',
+    grade: 'B',
+    marks: 78
+  }
+]
+
 
