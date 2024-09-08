@@ -1,0 +1,97 @@
+/* Login.css */
+
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f7f7f7;
+  }
+  
+  .login-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+  }
+  
+  .social-login-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .login-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    background-color: white;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .login-btn img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+  }
+  
+  .login-btn:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .login-btn.google {
+    border-color: #db4437;
+  }
+  
+  .login-btn.facebook {
+    border-color: #4267B2;
+  }
+  
+  .login-btn.apple {
+    border-color: #333;
+  }
+  
+  .login-btn.twitter {
+    border-color: #1DA1F2;
+  }
+  
+  .login-btn.email {
+    border-color: #ccc;
+  }
+  
+  p {
+    margin-top: 1.5rem;
+    color: #333;
+  }
+  
+  p a {
+    color: #00a550;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  
+  p a:hover {
+    text-decoration: underline;
+  }
+  
+  .help-text {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #777;
+  }
+  

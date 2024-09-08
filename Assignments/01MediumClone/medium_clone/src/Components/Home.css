@@ -1,0 +1,130 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:wght@700&display=swap");
+
+.container {
+    text-align: center;
+    background-color: #f7f1e5;
+    color: #333;
+    min-height: 100vh;
+  }
+  
+  .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: #fff;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: 'Inter', sans-serif;
+  
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  font-family: 'Playfair Display', serif;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.nav-links a {
+  font-size: 0.9rem; 
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #000; 
+}
+
+.get-started-btn {
+  background-color: #000;
+  color: #fff;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 25px;
+  font-size: 0.9rem; 
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.get-started-btn:hover {
+  background-color: #333; 
+}
+
+.main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-grow: 1;
+  }
+  
+  .left {
+    flex: 1;
+    text-align: left;
+    padding: 50px;
+  }
+  
+  .left h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 6rem;
+    font-weight: bold;
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+  
+  .left p {
+    font-family: 'Inter', sans-serif;
+    font-size: large;
+    margin-bottom: 40px;
+    color: #555;
+  }
+  
+  .right img {
+    height: 600px;
+    width: 100%;
+    max-width: 600px;
+    object-fit: cover;
+    overflow: hidden;
+  }
+  
+  .start-reading-btn {
+    background-color: #000;
+    color: #fff;
+    padding: 15px 35px;
+    border: none;
+    border-radius: 35px;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+  
+  .footer {
+    background-color: #fff;
+    padding: 20px 0;
+  }
+  
+  .footer ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0;
+  }
+  
+  .footer ul li {
+    margin: 0 15px;
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
